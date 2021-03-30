@@ -1,141 +1,169 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity"
-    android:background="@color/purple_700"
-    android:orientation="vertical"
-    android:weightSum="2"
+
+
     >
-    <LinearLayout
-        android:orientation="vertical"
+    <ImageView
+        android:id="@+id/imageViewBlurimg"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="2"
-        >
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="30dp"
-            android:text="Tên bài hát"
-            android:textColor="#fff"
-            android:textSize="20dp"
-            android:gravity="center"
-            android:layout_margin="20dp"></TextView>
-        <de.hdodenhof.circleimageview.CircleImageView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginTop="20dp"
-            android:src="@drawable/quan_trong_la_than_thai">
-
-        </de.hdodenhof.circleimageview.CircleImageView>
-    </LinearLayout>
+        android:layout_height="match_parent">
+    </ImageView>
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="bottom"
-
-        android:layout_weight="1"
+        android:layout_height="match_parent"
+        android:weightSum="2"
         android:orientation="vertical">
-        <TextView
+        <LinearLayout
+            android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="150dp"
-            android:text="Lời bài hát"
-            android:textColor="#fff"
-            android:textSize="20dp"
-            android:gravity="center"
-           ></TextView>
-        <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:layout_marginTop="10dp">
-        <TextView
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:text="0:00"
-            android:textColor="#fff"
-            android:textSize="20dp"
-            android:gravity="center"
-            ></TextView>
-
-        <SeekBar
-            android:layout_marginLeft="50dp"
-            android:layout_marginRight="50dp"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            ></SeekBar>
-
-        <TextView
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:text="0:00"
-            android:textColor="#fff"
-            android:textSize="20dp"
-            android:layout_alignParentRight="true"
-            android:gravity="center"
-            ></TextView>
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <ImageButton
-                android:layout_margin="10dp"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:src="@drawable/iconshuffled"
-                android:tint="#fff"
-                android:background="@null"
-                android:layout_alignParentLeft="true"
-                android:scaleType="fitCenter"
-                android:adjustViewBounds="true"
-                ></ImageButton>
-
-            <LinearLayout
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            >
+            <TextView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="30dp"
+                android:text="Tên bài hát"
+                android:textColor="#fff"
+                android:textSize="20dp"
                 android:gravity="center"
-                >
+                android:layout_margin="20dp"></TextView>
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/imgCD"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="20dp"
+                android:src="@drawable/quan_trong_la_than_thai"
+
+            >
+
+            </de.hdodenhof.circleimageview.CircleImageView>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="bottom"
+
+            android:layout_weight="1"
+            android:orientation="vertical">
+            <TextView
+                android:id="@+id/tvLoiBaiHat"
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:text="Lời bài hát"
+                android:textColor="#fff"
+                android:textSize="20dp"
+                android:gravity="center"
+                ></TextView>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_marginTop="10dp">
+                <TextView
+                    android:id="@+id/tvTimeRun"
+                    android:layout_width="70dp"
+                    android:layout_height="50dp"
+                    android:text="00:00"
+                    android:textColor="#fff"
+                    android:textSize="20dp"
+                    android:gravity="center"
+                    ></TextView>
+
+                <SeekBar
+                    android:id="@+id/seekBar"
+                    android:layout_marginLeft="70dp"
+                    android:layout_marginRight="70dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    ></SeekBar>
+
+                <TextView
+                    android:id="@+id/tvTimeAll"
+                    android:layout_width="70dp"
+                    android:layout_height="50dp"
+                    android:text="00:00"
+                    android:textColor="#fff"
+                    android:textSize="20dp"
+                    android:layout_alignParentRight="true"
+                    android:gravity="center"
+                    ></TextView>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
                 <ImageButton
-                    android:layout_margin="10dp"
+                    android:padding="10dp"
+                    android:layout_margin="20dp"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
-                    android:src="@drawable/iconpreview"
+                    android:src="@drawable/iconsuffle"
                     android:tint="#fff"
-                    android:background="@null"></ImageButton>
+                    android:background="@null"
+                    android:layout_alignParentLeft="true"
+                    android:scaleType="fitCenter"
+                    android:adjustViewBounds="true"
+                    ></ImageButton>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    >
+                    <ImageButton
+                        android:layout_margin="10dp"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:src="@drawable/iconpreview"
+                        android:tint="#fff"
+                        android:background="@drawable/cricle_while"
+                        android:padding="10dp"
+                        android:scaleType="fitCenter"
+                        android:adjustViewBounds="true"></ImageButton>
+                    <ImageButton
+                        android:id="@+id/btnPlay"
+                        android:layout_margin="10dp"
+                        android:layout_width="70dp"
+                        android:layout_height="70dp"
+                        android:src="@drawable/iconplay"
+                        android:tint="#fff"
+                        android:background="@drawable/cricle_while"
+                        android:padding="10dp"
+                        android:scaleType="fitCenter"
+                        android:adjustViewBounds="true"></ImageButton>
+                    <ImageButton
+                        android:layout_margin="10dp"
+                        android:padding="10dp"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:src="@drawable/iconnext"
+                        android:tint="#fff"
+                        android:background="@drawable/cricle_while"
+                        android:scaleType="fitCenter"
+                        android:adjustViewBounds="true"></ImageButton>
+                </LinearLayout>
+
                 <ImageButton
-                    android:layout_margin="10dp"
+                    android:layout_margin="20dp"
+                    android:padding="10dp"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
-                    android:src="@drawable/iconplay"
+                    android:src="@drawable/iconrepeat"
                     android:tint="#fff"
-                    android:background="@null"></ImageButton>
-                <ImageButton
-                    android:layout_margin="10dp"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:src="@drawable/iconnext"
-                    android:tint="#fff"
-                    android:background="@null"></ImageButton>
-            </LinearLayout>
+                    android:background="@null"
+                    android:layout_alignParentRight="true"
+                    android:scaleType="fitCenter"
+                    android:adjustViewBounds="true"></ImageButton>
 
-            <ImageButton
-                android:layout_margin="10dp"
-                android:padding="0dp"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:src="@drawable/iconsyned"
-                android:tint="#fff"
-                android:background="@null"
-                android:layout_alignParentRight="true"
-                android:scaleType="fitXY"
-                android:adjustViewBounds="true"
-                ></ImageButton>
+            </RelativeLayout>
 
-        </RelativeLayout>
-
+        </LinearLayout>
     </LinearLayout>
 
-</LinearLayout>
+
+</RelativeLayout>
