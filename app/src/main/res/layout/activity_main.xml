@@ -19,37 +19,39 @@
         android:layout_height="match_parent"
         android:weightSum="2"
         android:orientation="vertical">
+
         <LinearLayout
-            android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="2"
-            >
+            android:orientation="vertical">
+
             <TextView
+                android:id="@+id/tvName"
                 android:layout_width="match_parent"
                 android:layout_height="30dp"
+                android:layout_margin="20dp"
+                android:gravity="center"
                 android:text="Tên bài hát"
                 android:textColor="#fff"
-                android:textSize="20dp"
-                android:gravity="center"
-                android:layout_margin="20dp"></TextView>
+                android:textSize="20dp"></TextView>
+
             <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/imgCD"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_width="300dp"
+                android:layout_height="300dp"
+                android:layout_gravity="center"
                 android:layout_marginTop="20dp"
+                android:baselineAligned="false"
                 android:src="@drawable/quan_trong_la_than_thai"
+                app:civ_border_color="#fff"
+                app:civ_border_width="2dp"></de.hdodenhof.circleimageview.CircleImageView>
 
-            >
-
-            </de.hdodenhof.circleimageview.CircleImageView>
         </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="bottom"
-
-            android:layout_weight="1"
+            android:layout_gravity="bottom"
             android:orientation="vertical">
             <TextView
                 android:id="@+id/tvLoiBaiHat"
@@ -59,11 +61,13 @@
                 android:textColor="#fff"
                 android:textSize="20dp"
                 android:gravity="center"
+                android:layout_gravity="bottom"
                 ></TextView>
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
-                android:layout_marginTop="10dp">
+                android:layout_marginTop="10dp"
+                android:layout_alignParentBottom="true">
                 <TextView
                     android:id="@+id/tvTimeRun"
                     android:layout_width="70dp"
@@ -116,6 +120,7 @@
                     android:gravity="center"
                     >
                     <ImageButton
+                        android:id="@+id/btnPreview"
                         android:layout_margin="10dp"
                         android:layout_width="50dp"
                         android:layout_height="50dp"
@@ -137,6 +142,7 @@
                         android:scaleType="fitCenter"
                         android:adjustViewBounds="true"></ImageButton>
                     <ImageButton
+                        android:id="@+id/btnNext"
                         android:layout_margin="10dp"
                         android:padding="10dp"
                         android:layout_width="50dp"

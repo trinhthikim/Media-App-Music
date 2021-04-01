@@ -28,39 +28,44 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
-    ImageView imageViewBlurimg, imgCD;
-    ImageButton btnPlay;
+    ImageView  imgCD;
+//    ImageView imageViewBlurimg;
+    ImageButton btnPlay, btnPreview, btnNext;
     MediaPlayer player;
     CountDownTimer countDownTimer;
     SeekBar seekBar;
-    TextView tvTimeRun, tvTimeAll,  tvLoiBaiHat;
+    TextView tvTimeRun, tvTimeAll, tvName;
     float gocquay = 0;
+    ArrayList<Song> arraySong = new ArrayList<>();
+    int id_song = 0;
+    Song song = new Song();
 
-//    ArrayList<String> arrayLoiBaiHat = new ArrayList<>();
-//    int vi_tri_lyric = 0;
+    @RequiresApi(api=Build.VERSION_CODES.O)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_media_player);
         Into();
         anhxa();
         setUp();
         setClick();
-
     }
     private void anhxa()
     {
-        imageViewBlurimg = findViewById(R.id.imageViewBlurimg);
+//        imageViewBlurimg = findViewById(R.id.imageViewBlurimg);
         btnPlay = findViewById(R.id.btnPlay);
         seekBar = findViewById(R.id.seekBar);
         tvTimeRun = findViewById(R.id.tvTimeRun);
         tvTimeAll = findViewById(R.id.tvTimeAll);
         imgCD = findViewById(R.id.imgCD);
-        tvLoiBaiHat = findViewById(R.id.tvLoiBaiHat);
+        tvName = findViewById(R.id.tvName);
+        btnPreview = findViewById(R.id.btnPreview);
+        btnNext = findViewById(R.id.btnNext);
     }
+    @RequiresApi(api=Build.VERSION_CODES.O)
     private void  setUp() {
-        setBlurimg(imageViewBlurimg);
-
+        chuyenBai(0);
+        dungNhacLai();
         countDownTimer = new CountDownTimer(100000, 100) {
 
             @Override
@@ -82,15 +87,45 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if(player ==null) {
-                    batDauChayNhac(R.raw.anh_da_sai);
-                    Log.d("player", "batdau");
+                    batDauChayNhac(song.src);
                 }
                 else
                 if(player.isPlaying() == true){
                     dungNhacLai();
-                    Log.d("player", "danghat");
                 }
                 else chayTiepNhac();
+            }
+        });
+
+        btnPreview.setOnClickListener(new View.OnClickListener() {
+            @RequiresApi(api=Build.VERSION_CODES.O)
+            @Override
+            public void onClick(View v) {
+                if (player == null)
+                {
+                    batDauChayNhac(song.src);
+                }
+                else {
+                    dungNhacLai();
+                    chuyenBai(-1);
+                    chayTiepNhac();
+                }
+            }
+        });
+
+        btnNext.setOnClickListener(new View.OnClickListener() {
+            @RequiresApi(api=Build.VERSION_CODES.O)
+            @Override
+            public void onClick(View v) {
+                if (player == null)
+                {
+                    batDauChayNhac(song.src);
+                }
+                else {
+                    dungNhacLai();
+                    chuyenBai(+1);
+                    chayTiepNhac();
+                }
             }
         });
 
@@ -129,56 +164,30 @@ public class MainActivity extends AppCompatActivity {
         });
     }
     private void Into() {
-//        arrayLoiBaiHat.add("Loi1");
-//        arrayLoiBaiHat.add("Loi2");
-//        arrayLoiBaiHat.add("Loi3");
-//        arrayLoiBaiHat.add("Loi4");
-//        String data;
-//        InputStream in= getResources().openRawResource(R.raw.lyric_anh_da_sai);
-//        InputStreamReader inreader=new InputStreamReader(in);
-//        BufferedReader bufreader=new BufferedReader(inreader);
-//        StringBuilder builder=new StringBuilder();
-//        if(in!=null)
-//        {
-//            try
-//            {
-//                while((data=bufreader.readLine())!=null)
-//                {
-//                    builder.append(data);
-//                    builder.append("\n");
-//                }
-//                in.close();
-//                arrayLoiBaiHat.add(builder.toString());
-//            }
-//            catch(IOException ex){
-//                Log.e("ERROR", ex.getMessage());
-//            }
-//        }
-//        try {
-//            // Open stream to read file.
-//            FileInputStream in = this.openFileInput(R.raw.lyric_anh_da_sai);
-//
-//            BufferedReader br= new BufferedReader(new InputStreamReader(in));
-//
-//            StringBuilder sb= new StringBuilder();
-//            String s= null;
-//            while((s= br.readLine())!= null)  {
-//                sb.append(s).append("\n");
-//            }
-//            arrayLoiBaiHat.add(sb.toString());
-//
-//        } catch (Exception e) {
-//            Toast.makeText(this,"Error:"+ e.getMessage(),Toast.LENGTH_SHORT).show();
-//        }
+        Song song1= new Song();
+        song1.name = "Anh đã sai";
+        song1.img = R.drawable.anh_da_sai;
+        song1.src = R.raw.anh_da_sai;
+        song1.singer = "Only C";
+        arraySong.add(song1);
+
+        Song song2 = new Song();
+        song2.id = 1;
+        song2.name = "I love you";
+        song2.img = R.drawable.i_love_you;
+        song2.src = R.raw.i_love_you;
+        arraySong.add(song2);
+
+        song = arraySong.get(0);
     }
 
-    private void setBlurimg(ImageView view){
-        BlurImage.withContext(this)
-                .setBlurRadius(1.5f)
-                .setBitmapScale(0.1f)
-                .blurFromResource(R.drawable.quan_trong_la_than_thai)
-                .into(view);
-    }
+//    private void setBlurimg(int anh){
+//        BlurImage.withContext(this)
+//                .setBlurRadius(1.5f)
+//                .setBitmapScale(0.1f)
+//                .blurFromResource(anh)
+//                .into(imageViewBlurimg);
+//    }
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     private void batDauChayNhac(int index_song) {
@@ -222,27 +231,16 @@ public class MainActivity extends AppCompatActivity {
         if(number < 10) return "0" + number;
         return "" + number;
     }
-//    private void  upDateLyric(){
-//        if(player == null || player.isPlaying() == false) {
-//            return;
-//        }
-//        vi_tri_lyric++;
-//        if(arrayLoiBaiHat.size()== vi_tri_lyric){
-//            vi_tri_lyric = 0;
-//        }
-//
-//        new CountDownTimer(4000, 1000){
-//            @Override
-//            public void onTick(long millisUntilFinished) {
-//                tvLoiBaiHat.startAnimation(AnimationUtils.loadAnimation(MainActivity.this,R.anim.mat_di));
-//                tvLoiBaiHat.setText(arrayLoiBaiHat.get(vi_tri_lyric));
-//                tvLoiBaiHat.startAnimation(AnimationUtils.loadAnimation(MainActivity.this,R.anim.hien_ra));
-//            }
-//
-//            @Override
-//            public void onFinish() {
-//                start();
-//            }
-//        }.start();
-//   }
+    @RequiresApi(api=Build.VERSION_CODES.O)
+    private void chuyenBai(int x) {
+        id_song = id_song + x;
+        if(id_song == -1)id_song = arraySong.size() - 1;
+        if (id_song == arraySong.size()) id_song = 0;
+        song = arraySong.get(id_song);
+//        setBlurimg(song.img);
+        batDauChayNhac(song.src);
+        imgCD.setImageResource(song.img);
+
+       tvName.setText(song.name);
+    }
 }
